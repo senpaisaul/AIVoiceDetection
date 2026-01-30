@@ -1,0 +1,230 @@
+{
+  "info": {
+    "name": "Voice Detection API",
+    "description": "External testing collection for Voice Detection API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://YOUR_DEPLOYED_URL.onrender.com",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "hackathon-voice-api-2024-secure-key",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Valid Voice Detection (English)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"English\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0IAAQFjAAADYXBwbGljYXRpb24veC1jMnBhLW1hbmlmZXN0LXN0b3JlAGMycGEAYzJwYSBtYW5pZmVzdCBzdG9yZQAAAECnanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAQIFqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjkxNTY2OTZkLTVlNjktNDA3ZS1iY2FiLWYwNzYwZGY4OThiOAAAAAJ7anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAy2p1bWIAAAApanVtZGNib3IAEQAQgAAAqgA4m3EDYzJwYS5hY3Rpb25zLnYyAAAAAJpjYm9yoWdhY3Rpb25zgaNmYWN0aW9ubGMycGEuY3JlYXRlZG1zb2Z0d2FyZUFnZW50akVsZXZlbkxhYnNxZGlnaXRhbFNvdXJjZVR5cGV4Rmh0dHA6Ly9jdi5pcHRjLm9yZy9uZXdzY29kZXMvZGlnaXRhbHNvdXJjZXR5cGUvdHJhaW5lZEFsZ29yaXRobWljTWVkaWE\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Invalid API Key Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "invalid-key-test",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"English\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"dummy-data\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Invalid Language Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"French\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0I\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Tamil Language Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"Tamil\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0IAAQFjAAADYXBwbGljYXRpb24veC1jMnBhLW1hbmlmZXN0LXN0b3JlAGMycGEAYzJwYSBtYW5pZmVzdCBzdG9yZQAAAECnanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAQIFqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjkxNTY2OTZkLTVlNjktNDA3ZS1iY2FiLWYwNzYwZGY4OThiOAAAAAJ7anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAy2p1bWIAAAApanVtZGNib3IAEQAQgAAAqgA4m3EDYzJwYS5hY3Rpb25zLnYyAAAAAJpjYm9yoWdhY3Rpb25zgaNmYWN0aW9ubGMycGEuY3JlYXRlZG1zb2Z0d2FyZUFnZW50akVsZXZlbkxhYnNxZGlnaXRhbFNvdXJjZVR5cGV4Rmh0dHA6Ly9jdi5pcHRjLm9yZy9uZXdzY29kZXMvZGlnaXRhbHNvdXJjZXR5cGUvdHJhaW5lZEFsZ29yaXRobWljTWVkaWE\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Hindi Language Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"Hindi\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0IAAQFjAAADYXBwbGljYXRpb24veC1jMnBhLW1hbmlmZXN0LXN0b3JlAGMycGEAYzJwYSBtYW5pZmVzdCBzdG9yZQAAAECnanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAQIFqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjkxNTY2OTZkLTVlNjktNDA3ZS1iY2FiLWYwNzYwZGY4OThiOAAAAAJ7anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAy2p1bWIAAAApanVtZGNib3IAEQAQgAAAqgA4m3EDYzJwYS5hY3Rpb25zLnYyAAAAAJpjYm9yoWdhY3Rpb25zgaNmYWN0aW9ubGMycGEuY3JlYXRlZG1zb2Z0d2FyZUFnZW50akVsZXZlbkxhYnNxZGlnaXRhbFNvdXJjZVR5cGV4Rmh0dHA6Ly9jdi5pcHRjLm9yZy9uZXdzY29kZXMvZGlnaXRhbHNvdXJjZXR5cGUvdHJhaW5lZEFsZ29yaXRobWljTWVkaWE\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Malayalam Language Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"Malayalam\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0IAAQFjAAADYXBwbGljYXRpb24veC1jMnBhLW1hbmlmZXN0LXN0b3JlAGMycGEAYzJwYSBtYW5pZmVzdCBzdG9yZQAAAECnanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAQIFqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjkxNTY2OTZkLTVlNjktNDA3ZS1iY2FiLWYwNzYwZGY4OThiOAAAAAJ7anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAy2p1bWIAAAApanVtZGNib3IAEQAQgAAAqgA4m3EDYzJwYS5hY3Rpb25zLnYyAAAAAJpjYm9yoWdhY3Rpb25zgaNmYWN0aW9ubGMycGEuY3JlYXRlZG1zb2Z0d2FyZUFnZW50akVsZXZlbkxhYnNxZGlnaXRhbFNvdXJjZVR5cGV4Rmh0dHA6Ly9jdi5pcHRjLm9yZy9uZXdzY29kZXMvZGlnaXRhbHNvdXJjZXR5cGUvdHJhaW5lZEFsZ29yaXRobWljTWVkaWE\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Telugu Language Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"Telugu\",\n  \"audioFormat\": \"mp3\",\n  \"audioBase64\": \"SUQzBAAAAAECBVRTU0UAAAAOAAADTGF2ZjYwLjE2LjEwMEdFT0IAAQFjAAADYXBwbGljYXRpb24veC1jMnBhLW1hbmlmZXN0LXN0b3JlAGMycGEAYzJwYSBtYW5pZmVzdCBzdG9yZQAAAECnanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAQIFqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjkxNTY2OTZkLTVlNjktNDA3ZS1iY2FiLWYwNzYwZGY4OThiOAAAAAJ7anVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAy2p1bWIAAAApanVtZGNib3IAEQAQgAAAqgA4m3EDYzJwYS5hY3Rpb25zLnYyAAAAAJpjYm9yoWdhY3Rpb25zgaNmYWN0aW9ubGMycGEuY3JlYXRlZG1zb2Z0d2FyZUFnZW50akVsZXZlbkxhYnNxZGlnaXRhbFNvdXJjZVR5cGV4Rmh0dHA6Ly9jdi5pcHRjLm9yZy9uZXdzY29kZXMvZGlnaXRhbHNvdXJjZXR5cGUvdHJhaW5lZEFsZ29yaXRobWljTWVkaWE\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/voice-detection",
+          "host": ["{{base_url}}"],
+          "path": ["api", "voice-detection"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
