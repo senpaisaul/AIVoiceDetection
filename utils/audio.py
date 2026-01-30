@@ -14,8 +14,18 @@ def decode_base64_audio(base64_string: str):
     Only resamples to 16kHz if required by model.
     """
     try:
+        # Validate Base64 format
+        if not base64_string or len(base64_string) < 10:
+            raise ValueError("Base64 string too short or empty")
+        
         # Decode Base64
-        audio_bytes = base64.b64decode(base64_string)
+        try:
+            audio_bytes = base64.b64decode(base64_string, validate=True)
+        except Exception as e:
+            raise ValueError(f"Invalid Base64 format: {str(e)}")
+        
+        if len(audio_bytes) < 100:  # Minimum reasonable MP3 size
+            raise ValueError("Decoded audio data too small")
         
         # Load MP3 using pydub
         audio_segment = AudioSegment.from_mp3(io.BytesIO(audio_bytes))
