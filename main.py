@@ -69,6 +69,10 @@ def verify_api_key(x_api_key: Optional[str] = Header(None)):
         )
     return x_api_key
 
+@app.get("/")
+async def root():
+    return {"message": "Voice Detection API is running", "status": "ok"}
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
